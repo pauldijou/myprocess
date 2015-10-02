@@ -1,0 +1,22 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index(url = "/")
+GET     /auth                       controllers.Application.authenticated()
+GET     /fail                       controllers.Application.fail()
+GET     /error                      controllers.Application.error()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /public/*file               controllers.Assets.versioned(path="/assets", file: Asset)
+
+# API
+POST    /api/v1/login               controllers.UsersController.login
+POST    /api/v1/register            controllers.UsersController.register
+GET     /api/v1/users               controllers.UsersController.all
+GET     /api/v1/users/:id           controllers.UsersController.byId(id: UUID)
+GET     /api/v1/user                controllers.UsersController.current
+
+# HTML5 routing
+GET     /*url                       controllers.Application.index(url)
